@@ -12,3 +12,10 @@ class Persona(models.Model):
 	dni = models.PositiveIntegerField("D.N.I")
 
 
+#Clase alumno hereda atributos de Persona
+class Alumno (Persona):
+	pass
+
+	class Meta:
+		verbose_name="Alumno"
+		verbose_name_plural="Alumnos";
