@@ -31,3 +31,48 @@ class Profesor (Persona):
 		verbose_name_plural="Profesor"
 		
 
+
+#Clase Curso
+class Curso(models.Model):
+	materia = models.CharField("Materia", max_length=30)
+	class Meta:
+		verbose_name = "Curso"
+		verbose_name_plural = "Cursos"
+	def __str__(self):
+		return "{}".format(self.materia)
+
+
+#Clase Nota
+class Nota(models.Model):
+	valor = models.PositiveIntegerField("Nota")
+	alumno = models.ForeignKey("Alumno", Alumno)
+	curso = models.ForeignKey("Curso", Curso)
+	class Meta:
+		verbose_name="Nota"
+		verbose_name_plural="Notas"
+	def __str__(self):
+		return "{} {}".format(self. alumno, self.curso)
+
+
+#Clase Matriculacion del profesor
+class MatriculacionProfesor(models.Model):
+	profesor = models.OneToOneField("Profesor", Profesor, related_name='matricula')
+	curso = models.ForeignKey("Curso", Curso, related_name='matriculasProfesores')
+	class Meta:
+		verbose_name = "Matricula Profesor"
+		verbose_name_plural = "Matricula de Profesores"
+	def __str__(self):
+		return "{} {}".format(self.profesor, self.curso)
+
+
+
+#Clase Matriculacion del Alumno
+class MatriculacionAlumno(models.Model):
+	alumno = models.OneToOneField("Alumno", Alumno, related_name='matricula')
+	curso = models.ForeignKey("Curso", Curso, related_name='matriculasAlumnos')
+	class Meta:
+		verbose_name = "Matricula de Alumno"
+		verbose_name_plural = "Matriculas de Alumnos"
+	def __str__(self):
+		return "{} {}".format(self.alumno, self.curso)
+
