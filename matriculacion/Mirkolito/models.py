@@ -1,16 +1,20 @@
 from django.db import models
-
+from django.conf import settings
 # Create your models here.
 
 #Clase Persona donde muchas otras heredaran de ella
 class Persona(models.Model):
 	usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-	nombre = models.CharField("Nombre",max_lenght=30)
-	apellido = models.CharField("Apellido", max_lenght=30)
+	nombre = models.CharField("Nombre",max_length=30)
+	apellido = models.CharField("Apellido", max_length=30)
 	email = models.EmailField("Email", max_length=100)
 	telefono = models.CharField("Telefono", max_length=90)
 	dni = models.PositiveIntegerField("D.N.I")
-
+	class Meta:
+		verbose_name="Profesor"
+		verbose_name_plural="Profesor"
+	def __str__(self):
+		return "{} {}".format(self.apellido, self.nombre)
 
 #Clase Alumno hereda atributos de Persona
 class Alumno (Persona):
@@ -29,7 +33,6 @@ class Profesor (Persona):
 	class Meta:
 		verbose_name="Profesor"
 		verbose_name_plural="Profesor"
-		
 
 
 #Clase Curso
