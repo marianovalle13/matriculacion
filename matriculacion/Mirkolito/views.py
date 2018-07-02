@@ -4,8 +4,9 @@ from .models import *
 
 #funcion curso
 def lolito(request):
-	traer = Alumno.objects.all()
-	return render(request, 'principal.html', {'traer_alumnos': traer})
+	xdxd = Curso.objects.all()
+	traer = Alumno.objects.filter(id__in=xdxd)
+	return render(request, 'principal.html', {'traer_alumnos': traer, 'cursos':xdxd})
 	
 def cargar_nota(request, lolo, pinke):
 	nota = request.POST["nota"]
