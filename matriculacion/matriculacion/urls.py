@@ -15,7 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from Mirkolito.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', lolito, name='papito'),
+    path('cargar_notas/<int:lolo>/<int:pinke>',cargar_nota,name='cargar_nota')
 ]

@@ -1,7 +1,16 @@
-from django.shortcuts import render
-
+from django.shortcuts import render, redirect
+from .models import *
 # Create your views here.
+
 #funcion curso
-def cursos(request):
-	profe = Profesor.objects.get(usuario=request.user)
-	return render(request, "curso.html", {"cursos_del_profe":Curso.objects.filter(id__in=MatriculaProfesor.objects.filter(profesor=profe))})
+def lolito(request):
+	traer = Alumno.objects.all()
+	return render(request, 'principal.html', {'traer_alumnos': traer})
+	
+def cargar_nota(request, lolo, pinke):
+	nota = request.POST["nota"]
+	alumno = Alumno.objects.get(id=lolo)
+	curso = Curso.objects.get(id=pinke)
+	nueva_nota = Nota(valor=nota, alumno=alumno, curso=curso)
+	nueva_nota.save()
+	return redirect("papito")

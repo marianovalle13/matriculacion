@@ -48,8 +48,8 @@ class Curso(models.Model):
 #Clase Nota
 class Nota(models.Model):
 	valor = models.PositiveIntegerField("Nota")
-	alumno = models.ForeignKey("Alumno", Alumno)
-	curso = models.ForeignKey("Curso", Curso)
+	alumno = models.ForeignKey("Alumno", Alumno, related_name='notas')
+	curso = models.ForeignKey("Curso", Curso, related_name='cursonotas')
 	class Meta:
 		verbose_name="Nota"
 		verbose_name_plural="Notas"

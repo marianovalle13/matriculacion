@@ -1,0 +1,19 @@
+<html>
+
+<head>
+	<title>Principal</title>
+</head>
+<body>
+	 <ul>
+		{%for i in traer_alumnos%}
+		<!--Sirve para aclarar una variable, traer un valor-->
+		<h1> {{i.nombre}}</h1> 
+		<form method="POST" action="{%url 'cargar_nota' lolo=i.id pinke=i.notas.curso.id %}">
+			{% csrf_token %}
+			<input type='text' name='nota'>
+			<input type="submit">
+		</form>
+		{%endfor%}
+	</ul>
+</body>
+</html>
