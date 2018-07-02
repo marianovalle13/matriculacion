@@ -1,0 +1,14 @@
+<html>
+
+<head>
+	<title>Cursos</title>
+</head>
+<body>
+	 <ul>
+	{% for curso in cursos_del_profe %}
+		{{ curso.materia }}
+	{% endfor %}
+	</ul>
+
+</body>
+</html>
